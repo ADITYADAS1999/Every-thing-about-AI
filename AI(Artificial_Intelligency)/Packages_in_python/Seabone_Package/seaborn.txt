@@ -1,0 +1,97 @@
+
+
+########################################################
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seabone as sns
+########################################################
+
+a = sns.load_dataset("flights")
+sns.relplot(x = "passengers", y = "month", data = a)
+
+########################################################
+
+a = sns.load_dataset("flights")
+sns.relplot(x = "passengers", y = "month", hue = "year", data = a)
+
+#############################################################
+
+b = sns.load_dataset("tips")
+sns.relplot(x = "time", y = "tip", data = b, kind = "line")
+
+###############################################################
+
+sns.catplot(x = "day", y = "total_bill", data = b)
+#################################################################
+
+sns.catplot(x = "day", y = "total_bill", kind = "violin", data = b)
+###############################################################################
+
+
+sns.catplot(x = "day", y = "total_bill", kind = "boxen", data = b)
+
+##############################################################################
+
+from scipy import stats
+c = np.random.normal(loc = 5, size = 100, scale = 2)
+sns.displot(c)
+##################################################################
+
+a = sns.load_dataset("iris")
+b = sns.FacetGrid(a, col="species")
+b.map(plt.hist,"sepal_length")
+################################################################
+
+a = sns.load_dataset("flights")
+b = sns.PairGrid(a)
+b.map(plt.scatter)
+###################################################################
+sns.set(style = "darkgrid")
+a = sns.load_dataset("flights")
+b = sns.PairGrid(a)
+b.map(plt.scatter)
+####################################################################
+sns.set(style = "dark")
+a = sns.load_dataset("flights")
+b = sns.PairGrid(a)
+b.map(plt.scatter)
+
+####################################################################
+
+sns.set(style = "white", color_codes = True)
+a = sns.load_dataset("tips")
+sns.boxplot(x = "day", y = "total_bill", data = a)
+
+##############################################################
+
+
+sns.set(style = "white", color_codes = True)
+a = sns.load_dataset("tips")
+sns.boxplot(x = "day", y = "total_bill", data = a)
+sns.despine(offset = 10, trim = True)
+#############################################################
+
+c = sns.color_palette()
+sns.palplot(c)
+
+#############################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
