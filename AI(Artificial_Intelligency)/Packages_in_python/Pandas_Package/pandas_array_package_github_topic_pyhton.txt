@@ -1,0 +1,182 @@
+
+
+###############################
+import pandas as pd
+import numpy as np
+s = pd.Series([1,2,3,4,5,6,pd.nan,8,9,10])
+print(s)
+d = pd.date_range('20200301',periods=10)
+print(d)
+df = pd.DataFrame(np.random.randn(10,4), index=d,coloums=['A','B','C','D'])
+
+#############################################
+
+df = pd.DataFrame({'A':[1,2,3,4],
+		   'B':pd.Timestamp('20200301'),
+		   'C':pd.Series(1,index=list(range(4)),dtype='float32'),
+		   'D':np.array([5]*4,dtype='int32'),
+		   'E':pd.Categorical(['true','false','true','false']),
+		   'F':'Aditya'
+		  })
+print(df)
+
+##################################################
+
+df.dtypes
+##########################
+df.head()
+#########################
+df.tail()
+######################
+df.index
+######################
+df.columns
+########################
+df.describe()
+######################
+df.sort_index(axis=1,ascending=False)
+#################################
+df.sort_values(by='c')
+##############################
+df['C']
+###################
+df[0:3]
+####################
+df.loc[d[0]]
+#################
+df.loc[:,['A','C']]
+#######################
+df.at[d[0],'C']
+######################
+df.iloc[3]
+#####################
+df.iloc[3:5,0:2]
+#######################
+df[df['A']>0]
+#################
+
+How to handle missing & nan data inside a dataframe
+
+#############################3
+df2 = df.reindex(index=d[0:4],columns=list(df.columns)+('E')
+df2 = loc[d[0]:d[1],'E']=1
+print(df2)
+#######################################
+df2.isnull.count()
+########################
+df2.dropna()
+#########################
+df2.fillna(value=2)
+#########################
+pd.isna(df2)
+######################
+
+df.mean()
+####################
+df.mean(1)
+################
+s = pd.series([1,2,3,np.nan,4,5,6,7,8,9],index=d).shift(2)
+################################
+df.sub(s,axis='index')
+############################
+df.apply(np.cumsum)
+###########################
+df.apply(lamds x:x.max()-x.min())
+#################################
+s.value_count()
+###################
+s=series(['aditya','python','jupyter','np.nan','football','world'])
+##########################################
+s.str.upper()
+##############################
+df=pd.DataFrame(np.random.randn(10,4))
+#######################################
+df2=[df[:3],df[3:7],df[7:]]
+print(df2)
+###################################
+pd.concat(df2)
+#########################
+left=pd.DataFrame({'A':[1,2],'B':[3,4]})
+################################
+right=pd.DataFrame({'A':[1,2],'D':[3,4]})
+##################################
+print(left)
+#############################
+print(right)
+###############################
+pd.merge(left,right,on='A')
+##############################
+df.groupby(2).sum()
+###########################
+df.groupby([2,3]).sum()
+##########################
+
+my_tuple = list(zip(*[[1,2,3,4,5],[6,7,8,9,10]]))
+index = pd.MutiIndex.form_tuple(my_tuple,name=['First','Second'])
+df=pd.DataFrame(np.random,randn(8,2),index=index,coloums=['A','B'])
+#########################################################################
+df2.stack()
+#####################
+df2.unstack()
+######################
+a = df2.stack()
+########################
+a.unstack()
+####################
+df = pd.DataFrame({'A':['a','b','c','d']*3,
+		   'B':['A','B','C']*4,
+		   'C':['P','P','P','Q','Q','Q']*2,
+		   'D':np.random.randn(12),
+		   'E':np.random.randn(12)})
+		  
+print(df)
+#############################################
+
+pd.pivot_table(df,value='D',index=['A','B'],cploums=['C'])
+################################################
+
+dates = pd.date_range('3/3/2020 00:00'periods=100,freq='s')
+ts = pd.series(np.random.randn(len(dates)),dates)
+ts_utc = ts.tz_localize('UTC')
+print(ts_utc)
+ts_utc.tz_convert('Us/Eastern')
+##################################################
+
+dates = pd.date_range('3/3/2020 00:00'periods=100,freq='s')
+ts = pd.series(np.random.randn(len(dates)),dates)
+print(ts)
+ps = ts.to_period()
+print(ps)
+ps.to_timestamp()
+###################################################
+
+df = pd.DataFrame({'id':[1,2,3,4,5,6], 'Grade':['a','b','c','d','a','e']})
+print(df)
+######################################################
+
+df['Grade'] = df['grade'].astype("category")
+###################################################
+
+df['Grade'].cat.categori=["good","very bad","very good","excellent"]
+#######################################################
+
+df['Grade'] = df['Grade'].cat.set_categories(["very good","bad","very bad","good","medium"])
+
+#############################################################
+
+import matplotlib.pyplot as plt
+#########################################
+
+plt.close('all')
+
+###########################################
+
+ts = pd.series(np.random.randn(500),index=pd.date_range('1/2/2020',periods=500)
+ts = ts.cumsum()
+ts.plot()
+
+###############################################
+
+
+ts.to_csv("ts.csv")
+pd.read.csv(r '   with the path where you save the datasets     ')
